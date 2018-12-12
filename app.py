@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -11,7 +12,7 @@ app = Flask(__name__)
 # SQLAlchemy and flask_SQLAlchemy have trackers to know every modification we do
 # turning off Flask_SQLAlchemy tracker is better because keep the SQLAlchemy tracker which is a better one
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.eniron.get('DATABASE_URL', 'sqlite:///data.db')
 app.secret_key = 'jose'
 api = Api(app)
 
